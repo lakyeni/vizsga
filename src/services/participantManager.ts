@@ -32,6 +32,9 @@ export class ParticipantManager {
             throw new Error(`A résztvevő nem található az eseményen!`);
         }
 
+        const participant = event.participants[index]!;
+
+        console.log(`Résztvevő törölve: ${participant.name} (${participant.email})`);
         event.participants.splice(index, 1);
     }
 
