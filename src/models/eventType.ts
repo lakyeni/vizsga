@@ -9,25 +9,25 @@ export class EventType {
 }
 
 export class Birthday extends EventType{
-    constructor(name: string, public character: string) {
+    constructor(public character: string) {
         super("Születésnap");
     }
 }
 
 export class Wedding extends EventType{
-    constructor(name: string, public character: string) {
+    constructor(public character: string) {
         super("Esküvő");
     }
 }
 
 export class Festival extends EventType{
-    constructor(name: string, public character: string) {
+    constructor(public character: string) {
         super("Fesztivál");
     }
 }
 
 export class Concert extends EventType{
-    constructor(name: string, public character: string) {
+    constructor(public character: string) {
         super("Koncert");
     }
 }
