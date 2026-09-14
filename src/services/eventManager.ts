@@ -7,8 +7,12 @@ export class EventManager<T extends Event> {
         this.events.set(event.getId(), event);
     }
 
-    updateEvent(oldEvent: T, newEvent: T): void {
+    updateEvent(oldEvent: T, newEvent: T): T {
+        if (!this.events.has(oldEvent.getId())) {
+            throw new Error(`Az esemény nem található!`);
+        }
         this.events.set(oldEvent.getId(), newEvent);
+        return newEvent;
     }
 
     removeEvent(event: T): void {
