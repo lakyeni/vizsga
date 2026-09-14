@@ -22,4 +22,16 @@ export class EventManager<T extends Event> {
     getEventsByType(typeName: string): T[] {
         return Array.from(this.events.values()).filter(event => event.eventType.name === typeName);
     }
+
+    getEventsGroupedByType(): Map<string, T[]> {
+        const groupedEvents = new Map<string, T[]>();
+        for (const event of this.events.values()) {
+            const typeName = event.eventType.name;
+            if (!groupedEvents.has(typeName)) {
+                groupedEvents.set(typeName, []);
+            }
+            groupedEvents.get(typeName)!.push(event);
+        }
+        return groupedEvents;
+    }
 }
