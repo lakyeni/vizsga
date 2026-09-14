@@ -17,7 +17,6 @@ eventManager.addEvent(event2);
 //esemény frissítése 
 eventManager.updateEvent(event2, new Event(2, "Klau&Erik esküvője", new Date('2027-05-15'), "Etyek, Nap utca 22", new EventType("Esküvő"), "Kiss Fanni"));
 
-console.log(`Esemény frissítve: ${event2.name}, új dátum: ${event2.date.toDateString()}`);
 
 const event3 = new Event(3, "Tisza-fesztivál", new Date('2027-08-20'), "Szeged, Dóm tér", new EventType("Fesztivál"), "Nagy László");
 
@@ -37,12 +36,15 @@ participantManager.addParticipant(event3, "Nagy László", "nagy.laszlo@example.
 
 //Résztvevő törlése bizonyos eseményből
 participantManager.removeParticipant(event1, 2); 
-console.log(`Résztvevő törölve az eseményből: ${event1.name}`);
 
 // Események listázása
-console.log("Összes esemény:");
 eventManager.listEvents().forEach(event => {
     console.log(`ID: ${event.getId()}, Név: ${event.name}, Dátum: ${event.date.toDateString()}, Helyszín: ${event.location}, Típus: ${event.eventType.name}, Szervező: ${event.organizer}`);
+});
+
+//résztvevők listázása egy eseményhez
+participantManager.listParticipants(event1).forEach(participant => {
+    console.log(`Résztvevő ID: ${participant.id}, Név: ${participant.name}, Email: ${participant.email}`);
 });
 
 console.log("a program vége");
