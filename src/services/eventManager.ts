@@ -1,4 +1,5 @@
 import { Event } from "../models/event";
+import { EventType } from "../models/eventType";
 
 export class EventManager<T extends Event> {
     private events: Map<number, T> = new Map();
@@ -17,5 +18,9 @@ export class EventManager<T extends Event> {
 
     listEvents(): T[] {
         return Array.from(this.events.values());
+    }
+
+    getEventsByType(type: EventType): T[] {
+        return Array.from(this.events.values()).filter(event => event.eventType.name === type.name);
     }
 }
