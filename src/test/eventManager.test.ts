@@ -25,4 +25,13 @@ describe("EventManager", () => {
         eventManager.removeEvent(event);
         expect(eventManager.listEvents()).toHaveLength(0);  
     })
-})
+
+    test("aszinkron esemény létrehozása", async () => {
+        const event = new Event(2, "Teszt async esemény", new Date('2026-09-14'), "Valahol", new EventType("Koncert"), "Laky Enikő");
+        
+        await eventManager.createEventAsync(event);
+
+        expect(eventManager.listEvents()).toHaveLength(1);
+
+    })
+    })

@@ -2,7 +2,6 @@ import { LogClass, LogMethod } from "../decorators/log.decorators";
 import { Event } from "../models/event";
 
 @LogClass
-
 export class EventManager<T extends Event> {
     private events: Map<number, T> = new Map();
 
@@ -67,4 +66,19 @@ export class EventManager<T extends Event> {
         }
         return groupedEvents;
     }
-}
+
+    async createEventAsync(event: T): Promise<void> {
+        try {
+            await new Promise<void>((resolve) => {
+                setTimeout(() => {
+                    this.addEvent(event);
+                    resolve();
+                }, 1000);
+            });
+            this.addEvent(event);
+        } catch (error) {
+            console.error("Hiba történt az esemény létrehozása során:", error);
+            throw error;
+        }
+    }
+}   
