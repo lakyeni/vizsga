@@ -1,9 +1,13 @@
+import { LogClass, LogMethod } from "../decorators/log.decorators";
 import { Event } from "../models/event";
+
+@LogClass
 
 export class EventManager<T extends Event> {
     private events: Map<number, T> = new Map();
 
     // esemény hozzáadása
+@LogMethod
     addEvent(event: T): void {
         this.events.set(event.getId(), event);
     
@@ -11,7 +15,6 @@ export class EventManager<T extends Event> {
     }
 
     // esemény frissítése
-
     updateEvent(oldEvent: T, newEvent: T): T {
         if (!this.events.has(oldEvent.getId())) {
             throw new Error(`Az esemény nem található!`);
